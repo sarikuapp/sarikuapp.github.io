@@ -42,7 +42,6 @@
     href="favicon.png"
   >
 
-  <!-- Open Graph -->
   <meta
     property="og:type"
     content="website"
@@ -133,7 +132,6 @@
     content="pt_BR"
   >
 
-  <!-- Twitter / X -->
   <meta
     name="twitter:card"
     content="summary_large_image"
@@ -159,7 +157,6 @@
     content="SARIKU — Crie conteúdo que vende"
   >
 
-  <!-- Dados estruturados: Organização -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -172,7 +169,6 @@
   }
   </script>
 
-  <!-- Dados estruturados: Site -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -358,7 +354,8 @@
     }
 
     .contact a:hover {
-      transform: translateY(-2px);
+      transform:
+        translateY(-2px);
 
       background:
         rgba(255, 255, 255, 0.10);
@@ -396,6 +393,7 @@
       font-size: 12px;
 
       text-decoration: underline;
+
       cursor: pointer;
     }
 
@@ -413,6 +411,7 @@
       z-index: 9999;
 
       max-width: 820px;
+
       margin: 0 auto;
 
       padding: 20px;
@@ -456,6 +455,7 @@
 
     .cookie-actions {
       display: flex;
+
       gap: 10px;
 
       margin-top: 16px;
@@ -485,6 +485,7 @@
         rgba(255, 255, 255, 0.20);
 
       background: transparent;
+
       color: #ffffff;
     }
 
@@ -503,7 +504,8 @@
     }
 
     .cookie-button:hover {
-      transform: translateY(-1px);
+      transform:
+        translateY(-1px);
     }
 
     @media
@@ -566,7 +568,8 @@
       }
 
       .cookie-actions {
-        flex-direction: column-reverse;
+        flex-direction:
+          column-reverse;
       }
 
       .cookie-button {
@@ -576,34 +579,63 @@
   </style>
 
   <script>
-    const SARIKU_GA_ID = "G-7MNJ5LG95T";
-    const SARIKU_CONSENT_KEY = "sariku_cookie_consent_v1";
+    const SARIKU_GA_ID =
+      "G-7MNJ5LG95T";
+
+    const SARIKU_CONSENT_KEY =
+      "sariku_cookie_consent_v1";
 
     function loadGoogleAnalytics() {
-      if (window.sarikuAnalyticsLoaded) {
+
+      if (
+        window.sarikuAnalyticsLoaded
+      ) {
         return;
       }
 
-      window.sarikuAnalyticsLoaded = true;
+      window.sarikuAnalyticsLoaded =
+        true;
 
-      window.dataLayer = window.dataLayer || [];
+      window.dataLayer =
+        window.dataLayer || [];
 
-      window.gtag = function () {
-        dataLayer.push(arguments);
-      };
+      window.gtag =
+        function () {
+          dataLayer.push(arguments);
+        };
 
-      gtag("consent", "default", {
-        analytics_storage: "granted",
-        ad_storage: "denied",
-        ad_user_data: "denied",
-        ad_personalization: "denied"
-      });
+      gtag(
+        "consent",
+        "default",
+        {
+          analytics_storage:
+            "granted",
 
-      gtag("js", new Date());
+          ad_storage:
+            "denied",
 
-      gtag("config", SARIKU_GA_ID);
+          ad_user_data:
+            "denied",
 
-      const script = document.createElement("script");
+          ad_personalization:
+            "denied"
+        }
+      );
+
+      gtag(
+        "js",
+        new Date()
+      );
+
+      gtag(
+        "config",
+        SARIKU_GA_ID
+      );
+
+      const script =
+        document.createElement(
+          "script"
+        );
 
       script.async = true;
 
@@ -611,28 +643,104 @@
         "https://www.googletagmanager.com/gtag/js?id="
         + SARIKU_GA_ID;
 
-      document.head.appendChild(script);
+      document.head.appendChild(
+        script
+      );
     }
 
     function hideCookieBanner() {
+
       const banner =
-        document.getElementById("cookie-banner");
+        document.getElementById(
+          "cookie-banner"
+        );
 
       if (banner) {
-        banner.classList.add("hidden");
+        banner.classList.add(
+          "hidden"
+        );
       }
     }
 
     function showCookieBanner() {
+
       const banner =
-        document.getElementById("cookie-banner");
+        document.getElementById(
+          "cookie-banner"
+        );
 
       if (banner) {
-        banner.classList.remove("hidden");
+        banner.classList.remove(
+          "hidden"
+        );
       }
     }
 
+    function deleteCookie(
+      name,
+      domain
+    ) {
+
+      let cookie =
+        name
+        + "=;"
+        + " expires=Thu, 01 Jan 1970 00:00:00 GMT;"
+        + " path=/;";
+
+      if (domain) {
+        cookie +=
+          " domain="
+          + domain
+          + ";";
+      }
+
+      document.cookie =
+        cookie;
+    }
+
+    function clearGoogleAnalyticsCookies() {
+
+      const cookies =
+        document.cookie
+          .split(";");
+
+      cookies.forEach(
+        function (cookie) {
+
+          const cookieName =
+            cookie
+              .split("=")[0]
+              .trim();
+
+          if (
+            cookieName === "_ga"
+            ||
+            cookieName.startsWith(
+              "_ga_"
+            )
+          ) {
+
+            deleteCookie(
+              cookieName,
+              null
+            );
+
+            deleteCookie(
+              cookieName,
+              "sariku.com.br"
+            );
+
+            deleteCookie(
+              cookieName,
+              ".sariku.com.br"
+            );
+          }
+        }
+      );
+    }
+
     function acceptCookies() {
+
       localStorage.setItem(
         SARIKU_CONSENT_KEY,
         "accepted"
@@ -644,15 +752,26 @@
     }
 
     function rejectCookies() {
+
       localStorage.setItem(
         SARIKU_CONSENT_KEY,
         "rejected"
       );
 
+      clearGoogleAnalyticsCookies();
+
       hideCookieBanner();
+
+      if (
+        window.sarikuAnalyticsLoaded
+      ) {
+
+        window.location.reload();
+      }
     }
 
     function openCookiePreferences() {
+
       showCookieBanner();
     }
 
@@ -665,14 +784,27 @@
             SARIKU_CONSENT_KEY
           );
 
-        if (consent === "accepted") {
+        if (
+          consent ===
+          "accepted"
+        ) {
+
           hideCookieBanner();
+
           loadGoogleAnalytics();
+
           return;
         }
 
-        if (consent === "rejected") {
+        if (
+          consent ===
+          "rejected"
+        ) {
+
           hideCookieBanner();
+
+          clearGoogleAnalyticsCookies();
+
           return;
         }
 
