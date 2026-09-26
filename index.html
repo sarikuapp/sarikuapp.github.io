@@ -193,12 +193,7 @@
 
     body {
       min-height: 100vh;
-
-      font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
+      font-family: Arial, Helvetica, sans-serif;
       color: #ffffff;
 
       background:
@@ -224,23 +219,19 @@
     .container {
       width: 100%;
       max-width: 920px;
-
       text-align: center;
     }
 
     .brand {
       display: flex;
       justify-content: center;
-
       margin-bottom: 30px;
     }
 
     .brand img {
       display: block;
-
       width: min(430px, 78vw);
       height: auto;
-
       object-fit: contain;
     }
 
@@ -283,9 +274,7 @@
         );
 
       line-height: 1.05;
-
       letter-spacing: -1.2px;
-
       font-weight: 800;
     }
 
@@ -306,7 +295,6 @@
 
     .description {
       max-width: 640px;
-
       margin: 0 auto;
 
       color: #c1c2d2;
@@ -354,8 +342,7 @@
     }
 
     .contact a:hover {
-      transform:
-        translateY(-2px);
+      transform: translateY(-2px);
 
       background:
         rgba(255, 255, 255, 0.10);
@@ -378,12 +365,22 @@
       color: #7f8197;
 
       font-size: 13px;
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
-    .cookie-preferences {
-      margin-top: 10px;
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
 
+      gap: 8px 14px;
+
+      margin-top: 10px;
+    }
+
+    .footer-link,
+    .cookie-preferences {
       border: 0;
       background: transparent;
 
@@ -393,10 +390,12 @@
       font-size: 12px;
 
       text-decoration: underline;
+      text-underline-offset: 3px;
 
       cursor: pointer;
     }
 
+    .footer-link:hover,
     .cookie-preferences:hover {
       color: #ffffff;
     }
@@ -504,8 +503,7 @@
     }
 
     .cookie-button:hover {
-      transform:
-        translateY(-1px);
+      transform: translateY(-1px);
     }
 
     @media
@@ -568,8 +566,7 @@
       }
 
       .cookie-actions {
-        flex-direction:
-          column-reverse;
+        flex-direction: column-reverse;
       }
 
       .cookie-button {
@@ -765,7 +762,6 @@
       if (
         window.sarikuAnalyticsLoaded
       ) {
-
         window.location.reload();
       }
     }
@@ -854,15 +850,28 @@
     <footer>
       © 2026 SARIKU. Todos os direitos reservados.
 
-      <br>
+      <div class="footer-links">
 
-      <button
-        class="cookie-preferences"
-        type="button"
-        onclick="openCookiePreferences()"
-      >
-        Preferências de cookies
-      </button>
+        <a
+          class="footer-link"
+          href="privacidade.html"
+        >
+          Política de Privacidade e Cookies
+        </a>
+
+        <span aria-hidden="true">
+          •
+        </span>
+
+        <button
+          class="cookie-preferences"
+          type="button"
+          onclick="openCookiePreferences()"
+        >
+          Preferências de cookies
+        </button>
+
+      </div>
     </footer>
 
   </main>
