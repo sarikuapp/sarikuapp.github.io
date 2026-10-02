@@ -196,6 +196,43 @@ h1{
   right:-27px!important;
   z-index:3;
 }
+  .flow-step:not(:last-child):before{
+  display:none!important;
+}
+
+.flow-step:not(:last-child):after{
+  content:""!important;
+  position:absolute!important;
+  top:50%!important;
+  right:-29px!important;
+  width:26px!important;
+  height:12px!important;
+  transform:translateY(-50%)!important;
+  clip-path:polygon(
+    0 42%,
+    68% 42%,
+    68% 8%,
+    100% 50%,
+    68% 92%,
+    68% 58%,
+    0 58%
+  );
+  border-radius:0!important;
+  opacity:1!important;
+  z-index:3!important;
+}
+
+.flow-step:nth-child(1):after{
+  background:linear-gradient(90deg,#FF8A3D,#FF4D8D)!important;
+}
+
+.flow-step:nth-child(2):after{
+  background:linear-gradient(90deg,#FF4D8D,#8B5CF6)!important;
+}
+
+.flow-step:nth-child(3):after{
+  background:linear-gradient(90deg,#8B5CF6,#3B82F6)!important;
+}
 </style>
 <script>
 const SARIKU_GA_ID="G-7MNJ5LG95T",SARIKU_CONSENT_KEY="sariku_cookie_consent_v1";let interestSectionTracked=false;
